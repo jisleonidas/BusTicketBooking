@@ -1,0 +1,5 @@
+#include "header.h"
+
+Bus BUSES[MAX_BUSES];
+Passenger PASSENGERS[MAX_PASSENGERS];
+Ticket TICKETS[MAX_TICKETS];
