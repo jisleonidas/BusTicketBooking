@@ -29,15 +29,15 @@ void menu()
 
 void slice(char* result, char *str, size_t start, size_t end) {
     strncpy(result, str+start, end-start);
-    result[num] = '\0';
+    result[end-start] = '\0';
 }
 
 void parse_datetime(char string[], char datetime[])
 {
     int day, month, year, hour, minute;
 
-    sscanf(datetime, "%2d%2d%4f%2d%2d", &day, &month, &year, &hour, &minute);
-    sprintf(string, "%2d/%2d/%4d %2d:%2d", day, month, year huor minute);
+    sscanf(datetime, "%2d%2d%4d%2d%2d", &day, &month, &year, &hour, &minute);
+    sprintf(string, "%02d/%02d/%04d %02d:%02d", day, month, year, hour, minute);
 }
 
 void display_datetime(char datetime[])
@@ -48,13 +48,13 @@ void display_datetime(char datetime[])
     printf("%s", string);
 }
 
-void display_seats(int seats)
+void display_seats(int seats[])
 {
     for (int i = 0; i < MAX_SEATS; i++) {
-        if (seats[i])
+        if (!seats[i])
             printf("   ");
         else
-            printf("%2d ", seats[i]);
+            printf("%2d ", i+1);
 
         if (i % 2 != 0)
             printf("\n");

@@ -1,6 +1,6 @@
 #include "header.h"
 
-void initialize_bus_data(struct Bus buses[], int size) {
+void initialize_bus_data(Bus buses[], int size) {
     // Bus 1: Chennai to Bangalore
     buses[0].num = 1001;
     strcpy(buses[0].source, "Chennai");

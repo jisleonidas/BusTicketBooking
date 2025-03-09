@@ -9,11 +9,14 @@ void display_buses()
 
         printf("Departure Time: ");
         display_datetime(BUSES[i].dep);
-        print(", Arrival Time: ");
+        printf(", Arrival Time: ");
         display_datetime(BUSES[i].arriv);
-        print("\n");
+        printf("\n");
 
         printf("Available seats: \n");
         display_seats(BUSES[i].seats);
+
+        printf("\n");
     }
 }
+
