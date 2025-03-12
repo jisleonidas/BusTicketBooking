@@ -19,6 +19,7 @@ struct bus_t {
     char source[MAX_STR_LEN], dest[MAX_STR_LEN];  // Source and destination.
     char dep[13], arriv[13];  // Departure and arrival time in DDMMYYYYHHMM format.
     int seats[MAX_SEATS];  // Boolean array of seats with availability status.
+    float base_fare;  // Base fare for bus route.
 } typedef Bus;
 
 struct passenger_t {
@@ -28,9 +29,10 @@ struct passenger_t {
 } typedef Passenger;
 
 struct ticket_t {
-    int bus_num, booking_num;
+    int bus_num, booking_num, passengers_num;
     Passenger* passengers;  // List of passengers.
     int* seats;  // List of seats booked for passengers.
+    float total_fare;
 } typedef Ticket;
 
 extern Bus BUSES[MAX_BUSES];

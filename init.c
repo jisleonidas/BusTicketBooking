@@ -3,6 +3,7 @@
 void initialize_bus_data(Bus buses[], int size) {
     // Bus 1: Chennai to Bangalore
     buses[0].num = 1001;
+    buses[0].base_fare = 400;
     strcpy(buses[0].source, "Chennai");
     strcpy(buses[0].dest, "Bangalore");
     strcpy(buses[0].dep, "251020231400"); // 25th October 2023, 14:00
@@ -11,6 +12,7 @@ void initialize_bus_data(Bus buses[], int size) {
 
     // Bus 2: Chennai to Coimbatore
     buses[1].num = 1002;
+    buses[1].base_fare = 300;
     strcpy(buses[1].source, "Chennai");
     strcpy(buses[1].dest, "Coimbatore");
     strcpy(buses[1].dep, "251020231500"); // 25th October 2023, 15:00
@@ -19,6 +21,7 @@ void initialize_bus_data(Bus buses[], int size) {
 
     // Bus 3: Chennai to Madurai
     buses[2].num = 1003;
+    buses[2].base_fare = 350;
     strcpy(buses[2].source, "Chennai");
     strcpy(buses[2].dest, "Madurai");
     strcpy(buses[2].dep, "251020231600"); // 25th October 2023, 16:00
@@ -27,6 +30,7 @@ void initialize_bus_data(Bus buses[], int size) {
 
     // Bus 4: Chennai to Trichy
     buses[3].num = 1004;
+    buses[3].base_fare = 350;
     strcpy(buses[3].source, "Chennai");
     strcpy(buses[3].dest, "Trichy");
     strcpy(buses[3].dep, "251020231700"); // 25th October 2023, 17:00
@@ -35,6 +39,7 @@ void initialize_bus_data(Bus buses[], int size) {
 
     // Bus 5: Chennai to Pondicherry
     buses[4].num = 1005;
+    buses[4].base_fare = 200;
     strcpy(buses[4].source, "Chennai");
     strcpy(buses[4].dest, "Pondicherry");
     strcpy(buses[4].dep, "251020231800"); // 25th October 2023, 18:00

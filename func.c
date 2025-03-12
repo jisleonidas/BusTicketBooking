@@ -26,13 +26,16 @@ void display_buses()
 
 void book_tickets()
 {
-    int i, num, bus_num;
+    int i, num, bus_num, seat_num, count_c, count_s;
+    float total_fare;
     char c, name[MAX_STR_LEN];
     Bus *bus_ptr = NULL;
+    Ticket *ticket_ptr = NULL;
 
     printf("Enter bus number: ");
     scanf("%d", &bus_num);
 
+    printf("\n");
     for (int i = 0; i < MAX_BUSES; i++) {
         if (BUSES[i].num == bus_num) {
             printf("Bus found!\n");
@@ -41,9 +44,10 @@ void book_tickets()
         }
     }
     if (bus_ptr == NULL) {
-        printf("BUs not found!\n");
+        printf("Bus not found!\n");
         return;
     }
+    printf("\n");
 
     printf("Enter no. of passengers: ");
     scanf("%d", &num);
@@ -58,17 +62,34 @@ void book_tickets()
     Passenger* passengers = (Passenger *) malloc(num * sizeof(Passenger));
 
 
+    count_c = count_s = 0;
     printf("Select seats:\n");
-    for (int i = 0; i < num; i++) {
+    for (i = 0; i < num; i++) {
         printf("Seat %d: ", i+1);
-        scanf("%d", &seats[i]);
+        scanf("%d", &seat_num);
         skipgarb();
+
+        if (!(bus_ptr->seats[seat_num-1])) {
+            printf("Seat unavailable! Choose again.\n");
+            i--;
+            continue;
+        }
+
+        seats[i] = seat_num;
+
+        // Count no. of chair and sleeper seats.
+        if (seat_num % 4 == 1 || seat_num == 2)
+            count_c++;
+        else if (seat_num % 4 == 3 || seat_num == 0)
+            count_s++;
     }
+    printf("\n");
 
-    printf("Seat Preference Indication:\n");
-    printf("Chair    c\n");
-    printf("Sleeper  s\n");
+    // printf("Seat Preference Indication:\n");
+    // printf("Chair    c\n");
+    // printf("Sleeper  s\n");
 
+    printf("Enter Passenger details:\n");
     for (int i = 0; i < num; i++) {
         printf("Passenger %d\n", i+1);
 
@@ -79,14 +100,42 @@ void book_tickets()
         scanf("%d", &passengers[i].age);
         skipgarb();
 
-        printf("Enter Seat pref: ");
-        scanf("%c", &passengers[i].pref);
-        skipgarb();
+        // printf("Enter Seat pref: ");
+        // scanf("%c", &passengers[i].pref);
+        // skipgarb();
 
         printf("\n");
     }
 
-    TICKETS[TICKETS_BOOKED].passengers = passengers;
+    total_fare = calculate_fare(bus_ptr->base_fare, count_c, count_s);    
+    printf("Total fare: Rs. %.2f\n", total_fare);
+
+    while (TRUE) {
+        printf("Confirm booking? (y/n) ");
+        scanf("%c", &c);
+        skipgarb();
+
+        if (c == 'y') {
+            printf("Booking confirmed!\n");
+            break;
+        }
+        else if (c == 'n') {
+            printf("Booking aborted!\n");
+            break;
+        }
+        else {
+            printf("Invalid choice!\n");
+        }
+    }
+
+    ticket_ptr = &TICKETS[TICKETS_BOOKED];
+
+    ticket_ptr->bus_num = bus_num;
+    ticket_ptr->booking_num = 300+TICKETS_BOOKED;
+    ticket_ptr->passengers_num = num;
+    ticket_ptr->passengers = passengers;
+    ticket_ptr->seats = seats;
+
     for (i = 0; i < num; i++)
         bus_ptr->seats[seats[i]-1] = 0;
 }
