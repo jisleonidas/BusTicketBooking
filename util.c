@@ -76,15 +76,14 @@ void display_booking(Ticket* ticket_ptr)
 {
     Passenger pass;
 
-    printf("Bus Number: %d\n", ticket_ptr->bus_num);
     printf("Booking Number: %d\n", ticket_ptr->booking_num);
+    printf("Bus Number: %d\n", ticket_ptr->bus_num);
     printf("Passengers Count: %d\n", ticket_ptr->passengers_num);
     for (int i = 0; i < ticket_ptr->passengers_num; i++) {
         pass = ticket_ptr->passengers[i];
         printf("Passenger %d\n", i+1);
         printf("Name: %s\n", pass.name);
         printf("Age: %d\n", pass.age);
-        printf("\n");
     }
     printf("Seats selected: ");
     for (int i = 0; i < ticket_ptr->passengers_num; i++) {
@@ -92,6 +91,14 @@ void display_booking(Ticket* ticket_ptr)
     }
     printf("\n");
     printf("Total fare: %.2f\n", ticket_ptr->total_fare);
+}
+
+void display_bookings()
+{
+    for (int i = 0; i < TICKETS_BOOKED; i++) {
+        display_booking(&TICKETS[i]);
+        printf("\n");
+    }
 }
 
 int usergetline(char buf[MAX_STR_LEN])

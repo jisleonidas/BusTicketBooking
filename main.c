@@ -26,6 +26,7 @@ int main()
                 book_tickets();
                 break;
             case 3:
+                manage_bookings();
                 break;
             default:
                 printf("Invalid choice!\n");

@@ -10,6 +10,8 @@ void display_datetime(char datetime[]);
 void display_seats();
 int count_free_seats(Bus* bus_ptr);
 float calculate_fare(float base_fare, int count_c, int count_s);
+void display_booking(Ticket* ticket_ptr);
+void display_bookings();
 int usergetline(char buf[MAX_STR_LEN]);
 void skipgarb();
 

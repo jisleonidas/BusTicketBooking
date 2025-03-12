@@ -135,7 +135,36 @@ void book_tickets()
     ticket_ptr->passengers_num = num;
     ticket_ptr->passengers = passengers;
     ticket_ptr->seats = seats;
+    ticket_ptr->total_fare = total_fare;
 
     for (i = 0; i < num; i++)
         bus_ptr->seats[seats[i]-1] = 0;
+
+    TICKETS_BOOKED++;
+}
+
+void manage_bookings()
+{
+    int choice;
+
+    printf(
+        "\n"
+        "MANAGE BOOKINGS\n"
+        "---------------\n"
+        "1. Display all bookings.\n"
+        "\n"
+    );
+
+    printf("Enter choice: ");
+    scanf("%d", &choice);
+    skipgarb();
+
+    switch (choice) {
+        case 1:
+            display_bookings();
+            break;
+        default:
+            printf("Invalid choice!\n");
+            break;
+    }
 }
