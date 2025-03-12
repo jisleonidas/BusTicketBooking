@@ -5,14 +5,15 @@
 
 int main()
 {
-    int choice;
+    int choice, cont;
 
     initialize_bus_data(BUSES, 5);
     // display_buses();
 
     TICKETS_BOOKED = 0;
 
-    while (TRUE) {
+    cont = TRUE;
+    while (cont) {
         display_menu();
         printf("\n");
         printf("Enter choice: ");
@@ -27,6 +28,10 @@ int main()
                 break;
             case 3:
                 manage_bookings();
+                break;
+            case 4:
+                cont = FALSE;
+                printf("Exiting ...\n");
                 break;
             default:
                 printf("Invalid choice!\n");
