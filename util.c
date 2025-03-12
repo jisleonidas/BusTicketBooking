@@ -1,9 +1,7 @@
 #include "header.h"
 
-void menu()
+void display_menu()
 {
-    int choice;
-
     printf(
         "MENU\n"
         "----\n"
@@ -11,20 +9,6 @@ void menu()
         "2. Book tickets\n"
         "3. Manage bookings\n"
     );
-
-    printf("Enter your choice: ");
-    scanf("%d", &choice);
-
-    switch (choice) {
-        case 1:
-            break;
-        case 2:
-            break;
-        case 3:
-            break;
-        default:
-            printf("Invalid choice!\n");
-    }
 }
 
 void slice(char* result, char *str, size_t start, size_t end) {
@@ -59,4 +43,36 @@ void display_seats(int seats[])
         if (i % 2 != 0)
             printf("\n");
     }
+}
+
+int count_free_seats(Bus *bus)
+{
+    int i, count;
+
+    for (i = 0; i < MAX_SEATS; i++)
+        if (bus->seats[i])
+            count++;
+    
+    return count;
+}
+
+int usergetline(char buf[MAX_STR_LEN])
+{
+    int i, c;
+
+    for (i = 0; i < MAX_STR_LEN-1 && (c=getchar()) != '\n' && c != EOF; i++) {
+        buf[i] = c;
+    }
+    if (c == '\n' || c == EOF)
+        buf[i] = '\0';
+    
+    return i;
+}
+
+void skipgarb()
+{
+    int c;
+
+    while ((c=getchar()) != '\n' && c != EOF)
+        ;
 }
