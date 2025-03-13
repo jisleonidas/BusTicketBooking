@@ -23,6 +23,7 @@ int main()
 
         switch (choice) {
             case 1:
+                printf("\n");
                 display_buses();
                 break;
             case 2:

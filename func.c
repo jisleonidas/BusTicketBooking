@@ -16,11 +16,71 @@ void display_bus(Bus bus)
     display_seats(bus.seats);
 }
 
+void search_bus()
+{
+    int matches[MAX_BUSES] = {1, 1, 1, 1, 1};
+    int match_source, match_dest, match_dep;
+    char source[MAX_STR_LEN], dest[MAX_STR_LEN], dep[13];
+
+    match_source = match_dest = match_dep = 0;
+
+    print_header("BUS SEARCH");
+    printf("(Tip: Leave a field blank to not filter by it)\n\n");
+    printf("Source: ");
+    usergetline(source);
+    printf("Destination: ");
+    usergetline(dest);
+    printf("Departure time: ");
+    usergetline(dep);
+
+    // Match by field if not empty.
+    match_source = !is_whitespace(source);
+    match_dest = !is_whitespace(dest);
+    match_dep = !is_whitespace(dep);
+
+    print_header("MATCHES FOUND");
+    for (int i = 0; i < MAX_BUSES; i++) {
+        if (match_source) {
+            if (compare_string(source, BUSES[i].source) != 0)
+                matches[i] = 0;
+        }
+        if (match_dest) {
+            if (compare_string(dest, BUSES[i].dest) != 0)
+                matches[i] = 0;
+        }
+        if (match_dep) {
+            if (compare_string(dep, BUSES[i].dep) != 0)
+                matches[i] = 0;
+        }
+
+        if (matches[i]) {
+            display_bus(BUSES[i]);
+        }
+    }
+}
+
 void display_buses()
 {
-    for (int i = 0; i < MAX_BUSES; i++) {
-        display_bus(BUSES[i]);
-        printf("\n");
+    int choice;
+
+    printf("DISPLAY BUSES\n");
+    printf("-------------\n");
+    printf("1. Display All Buses\n");
+    printf("2. Search Buses.\n\n");
+    
+    printf("Enter choice: ");
+    scanf("%d", &choice);
+    skipgarb();
+
+    switch (choice) {
+        case 1:
+            for (int i = 0; i < MAX_BUSES; i++) {
+                display_bus(BUSES[i]);
+                printf("\n");
+            }
+            break;
+        case 2:
+            search_bus();
     }
 }
 

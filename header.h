@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <signal.h>
 #include <unistd.h>
+#include <ctype.h>
 
 #define MAX_STR_LEN 30
 #define MAX_SEATS 40

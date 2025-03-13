@@ -101,11 +101,21 @@ void display_bookings()
     }
 }
 
-void convert_lowercase(char a[MAX_STR_LEN])
+int is_whitespace(char str[MAX_STR_LEN])
 {
-    for (int i = 0; i < MAX_STR_LEN && a[i] != '\0'; i++) {
-        if (65 <= a[i] && a[i] <= 90)
-            a[i] += 32;  // Convert to lowercase character.
+    for (int i = 0; i < MAX_STR_LEN && str[i] != '\0'; i++) {
+        if (!isspace(str[i]))
+            return FALSE;
+    }
+    
+    return TRUE;
+}
+
+void convert_lowercase(char str[MAX_STR_LEN])
+{
+    for (int i = 0; i < MAX_STR_LEN && str[i] != '\0'; i++) {
+        if (65 <= str[i] && str[i] <= 90)
+            str[i] += 32;  // Convert to lowercase character.
     }
 }
 
@@ -154,4 +164,12 @@ void cleanup(int signal)
     }
     printf("\nMemory freed.\n");
     exit(signal);
+}
+
+void print_header(char *header)
+{
+    printf("\n%s\n", header);
+    for (int i = 0; i < strlen(header); i++)
+        putchar('-');
+    printf("\n");
 }
