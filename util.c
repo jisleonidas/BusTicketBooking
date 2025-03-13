@@ -101,6 +101,25 @@ void display_bookings()
     }
 }
 
+void convert_lowercase(char a[MAX_STR_LEN])
+{
+    for (int i = 0; i < MAX_STR_LEN && a[i] != '\0'; i++) {
+        if (65 <= a[i] && a[i] <= 90)
+            a[i] += 32;  // Convert to lowercase character.
+    }
+}
+
+int compare_string(char a[MAX_STR_LEN], char b[MAX_STR_LEN])
+{
+    char a_copy[MAX_STR_LEN], b_copy[MAX_STR_LEN];
+    strcpy(a_copy, a);
+    strcpy(b_copy, b);
+    convert_lowercase(a_copy);
+    convert_lowercase(b_copy);
+
+    return strcmp(a_copy, b_copy);
+}
+
 int usergetline(char buf[MAX_STR_LEN])
 {
     int i, c;
