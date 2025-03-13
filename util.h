@@ -14,5 +14,6 @@ void display_booking(Ticket* ticket_ptr);
 void display_bookings();
 int usergetline(char buf[MAX_STR_LEN]);
 void skipgarb();
+void cleanup(int signal);
 
 #endif

@@ -3,6 +3,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <signal.h>
+#include <unistd.h>
 
 #define MAX_STR_LEN 30
 #define MAX_SEATS 40

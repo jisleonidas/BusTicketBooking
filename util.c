@@ -121,3 +121,18 @@ void skipgarb()
     while ((c=getchar()) != '\n' && c != EOF)
         ;
 }
+
+void cleanup(int signal)
+{
+    Ticket *ticket_ptr;
+
+    for (int i = 0; i < TICKETS_BOOKED; i++) {
+        if (ticket_ptr != NULL) {
+            ticket_ptr = &TICKETS[TICKETS_BOOKED];
+            free(ticket_ptr->passengers);
+            free(ticket_ptr->seats);
+        }
+    }
+    printf("\nMemory freed.\n");
+    exit(signal);
+}

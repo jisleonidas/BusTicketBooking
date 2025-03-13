@@ -7,6 +7,8 @@ int main()
 {
     int choice, cont;
 
+    signal(SIGINT, cleanup);
+
     initialize_bus_data(BUSES, 5);
     // display_buses();
 
