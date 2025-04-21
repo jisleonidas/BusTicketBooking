@@ -62,11 +62,10 @@ int count_free_seats(Bus *bus)
     return count;
 }
 
-/*
- * base_fare: Base fare for route.
- * count_c: no. of chair (seater) tickets
- * count_s: no. of sleeper tickets
- */
+
+//  base_fare: Base fare for route.
+//  count_c: no. of chair (seater) tickets
+//  count_s: no. of sleeper tickets
 float calculate_fare(float base_fare, int count_c, int count_s)
 {
     return base_fare*(count_c+1.5*count_s);
